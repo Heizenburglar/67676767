@@ -1,16 +1,15 @@
-# This is a sample Python script.
+from pygame import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+win_w = 700
+win_h = 500
+window = display.set_mode((win_w,win_h))
+display.set_caption('Сны при температуре 67℃')
+background = transform.scale(image.load('images.jpg'),(win_w,win_h))
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+game = True
+while game:
+    window.blit(background,(0,0))
+    for e in event.get():
+        if e.type == QUIT:
+            game = False
+    display.update()
