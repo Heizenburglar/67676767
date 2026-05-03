@@ -32,8 +32,11 @@ class Player(GameSprite):
             self.rect.y += self.speed
 racket1 = Player('67.png',20,20,5,100,200)
 racket2 = Player('69.png',600,20,5,100,200)
-ball = GameSprite('balls.png',150,150,2,60,50)
+ball = GameSprite('balls.png',150,150,2,110,100)
+speed_x = 3
+speed_y = 3
 game = True
+clock = time.Clock()
 while game:
     window.blit(background,(0,0))
     racket1.upd_l()
@@ -44,4 +47,12 @@ while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+    if game == True:
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+        if ball.rect.y > win_h-50 or ball.rect.y < 0:
+            speed_y *= -1
+        if sprite.collide_rect(racket1,ball) or sprite.collide_rect(racket2,ball):
+            speed_x *=-1
     display.update()
+    clock.tick(200)
